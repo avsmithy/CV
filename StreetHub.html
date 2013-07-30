@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<style>
+		html, body, #map-canvas {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+		}		
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIaVPGtc8YiM_n7ru9lHsyfr_50SBg2uU&sensor=false"></script>
+	<script>
+
+	var map;
+	var geocoder;
+	var markerBounds;
+
+	$(function() { // On load		
+		// Create map
+		initialize();
+		//
+		//	Will NOT work unless allow Access-Control-Allow-Origin is set, JSONP enabled or use a proxy
+		//	(can bypass in browser for development e.g. https://addons.mozilla.org/en-us/firefox/addon/forcecors/) 		
+		//
+		url = 'http://www.streethub.com/api/challenge';
+		$.getJSON(url).done(function(data){
+    		Callback(data.response.data);
+    	}).fail(function(){
+    		$.ajax({
+    			url: url,
+    			dataType: 'jsonp' 
+    		}).done(function(data){
+    			Callback(data.response.data);
+    		}).fail(function(){
+    			console.log('AJAX Failed');
+    		});
+    	});		
+	});	
+
+	function Callback(shops) {		
+		var timer = 0;
+		/*
+		Stagger google geocodes due to usage limits.
+		Ideally would cache geocode on server.
+		Loop through data.
+		*/		
+		$.each(shops, function(index, value) {
+				var passVal = value;
+				timer += 500; 				
+				setTimeout(function(){
+					geocode(passVal);
+				}, timer)
+		});
+	}
+
+	function geocode(value) {
+		// Get full address
+		var addr = value.address + " " + value.postcode + " UK";
+		var oh = value.oh;
+		var shopName = value.name;
+		// Filter - Not really sure what I'm looking for
+		if (shopName && oh && value.address) {
+			// Geocode
+			geocoder.geocode( {'address': addr}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					pos = results[0].geometry.location;
+					// Create map marker
+					var marker = new google.maps.Marker({
+						map: map,
+						position: pos,
+						clickable: true
+					});			
+					// On marker click
+					google.maps.event.addListener(marker, 'click', function() {
+						// Move to position
+						map.panTo(marker.getPosition());
+						// Change info window data
+					    infowindow.setContent(shopName + "<br /><strong>Opening Hours</strong><br />" + oh);
+					    // Open info window
+						infowindow.open(map, marker);
+					});
+					// Add position to bounds
+					markerBounds.extend(pos);
+					// Zoom to bounds						
+					map.fitBounds(markerBounds);
+					console.log("Geocode successful");
+				} else {
+					console.log("Geocode not successful: " + status);
+				}
+			});	
+		}			
+	}
+
+	function initialize() {
+		var mapOptions = {
+		  center: new google.maps.LatLng(51.53095, -0.112817),
+		  zoom: 10,
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		// Create map
+		map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+		// Create infowindow
+		infowindow = new google.maps.InfoWindow({
+			content: ""
+		});
+		// Create geocoder and markerBounds
+		geocoder = new google.maps.Geocoder();
+		markerBounds = new google.maps.LatLngBounds();
+	}
+
+    </script>
+</head>
+<body>
+	<div id="map-canvas"></div>
+</body>
+</html>

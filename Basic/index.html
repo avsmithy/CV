@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Searchable Map Template Demo</title>
+    <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content='' name='description' />
+    <meta content='' name='author' />
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/bootstrap.spacelab.min.css"/>
+    <link rel="stylesheet" href="styles/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="styles/custom.css"/>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class='container-fluid'>
+      <div class='row-fluid'>
+        <div class='span4'>
+          <div class='well'>
+            <h4>Name</h4>
+            <input class='input-block-level' id='school_search' placeholder="Search for a school name" type='text' />
+          </div>
+
+          <div class='well'>
+            <h4>County</h4>
+            <label>
+            <select id='select_county'>
+              <option value=''>Any County</option>
+              <option value='12342132'>Nowhere</option>
+            </select>
+          </div>
+          
+          <div class='well'>
+            <h4>
+              Address <small>(<a id='find_me' href='#'>find me</a>)</small>
+            </h4>
+            <input class='input-block-level' id='search_address' placeholder='Enter an address or an intersection' type='text' />
+            <label>
+              within
+              <select class='input-small' id='search_radius'>
+                <option value='400'>2 blocks</option>
+                <option value='805'>1/2 mile</option>
+                <option value='1610'>1 mile</option>
+                <option value='3220'>2 miles</option>
+              </select>
+            </label>
+          </div>
+          <div class='well'>
+            <button class='btn' id='reset'>Reset</button>
+            <input class='btn btn-primary' id='search' type='button' value='Search' />
+          </div>
+          <p class='alert alert-info lead' id='result_count'></p>
+        </div>
+        <div class='span8'>
+          <div id='map_canvas'></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="source/jquery.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript" src="source/bootstrap.js"></script>
+    <script type="text/javascript" src="source/jquery.address.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+    <script type="text/javascript" src="source/jquery.geocomplete.min.js"></script>
+    <script type="text/javascript" src="source/maps_lib.js"></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        $(window).resize(function () {
+          var h = $(window).height(),
+            offsetTop = 90; // Calculate the top offset
+        
+          $('#map_canvas').css('height', (h - offsetTop));
+        }).resize();
+        
+        $(function() {
+          MapsLib.initialize();
+          $("#search_address").geocomplete();
+          MapsLib.pullSchools(); //Autocomplete schools
+          MapsLib.pullCounties(); //Autocomplete counties
+
+          //Dropdown on change
+          $('select').change(function() {
+            MapsLib.doSearch();
+          });
+          
+          //If change search radius
+          $('#search_radius').change(function(){
+            MapsLib.doSearch();
+          });
+          
+          //Click search button
+          $('#search').click(function(){
+            MapsLib.doSearch();
+          });
+          
+          //Geolocate
+          $('#find_me').click(function(){
+            MapsLib.findMe(); 
+            return false;
+          });
+          
+          // Reset address params?
+          $('#reset').click(function(){
+            $.address.parameter('address','');
+            MapsLib.initialize(); 
+            return false;
+          });
+          
+          // If hit Enter, search.
+          $(":text").keydown(function(e){
+              var key =  e.keyCode ? e.keyCode : e.which;
+              if(key == 13) {
+                  $('#search').click();
+                  return false;
+              }
+          });
+        });
+      //]]>
+    </script>
+  </body>
+</html>
