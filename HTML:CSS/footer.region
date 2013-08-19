@@ -1,0 +1,43 @@
+    <!--FOOTER WITH OPEN BLOCK FIELD-->
+
+    <footer id="footer">
+      <squarespace:block-field id="footerBlocks" columns="12" />
+    {.section website}
+      <div id="footerText">
+      
+      		<!--<div class="logo responsive">
+      			{.if logoImageUrl}
+      				<img src="{logoImageUrl}?format=150w" alt="{siteTitle|htmlattr}" />
+      			{.end}
+      		</div>-->
+      	
+      	<div class="textWrapper">
+			<div class="description responsive">
+				{siteDescription}
+			</div>
+
+			<div class="address responsive">
+				{location.addressTitle}<br />
+				{location.addressLine1}<br />
+				{location.addressLine2}<br />
+				{location.addressCountry}
+			</div>
+			<div class="clear"></div>
+		</div>
+
+	   </div>
+   		{.if siteTitle}
+			<div class="copyright">
+				Copyright © 2012, {siteTitle}. All rights reserved. Company Reg No. 08023937. <a href="/cookie-policy">Cookie Policy.</a>
+			</div>
+		{.end}
+	{.end}
+    </footer>
+
+    <!--INJECTION POINT FOR TRACKING SCRIPTS AND USER CONTENT FROM THE CODE INJECTION TAB-->
+
+    {squarespace-footers}
+    
+  </body>
+
+</html> 
