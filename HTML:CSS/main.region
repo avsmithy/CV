@@ -1,7 +1,0 @@
-<!--CONTENT INJECTION POINT-->
-
-    <section id="content" class="clear">
-    	<h2>{collection.title}</h2>
-   		<div id="main-content">{squarespace.main-content}</div>
-   		<squarespace:block-field id="sidebar" columns="12" />
-    </section>

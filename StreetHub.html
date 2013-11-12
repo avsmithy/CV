@@ -26,32 +26,30 @@
 		//
 		url = 'http://www.streethub.com/api/challenge';
 		$.getJSON(url).done(function(data){
-    		Callback(data.response.data);
+    		callback(data.response.data);
     	}).fail(function(){
     		$.ajax({
     			url: url,
     			dataType: 'jsonp' 
     		}).done(function(data){
-    			Callback(data.response.data);
+    			callback(data.response.data);
     		}).fail(function(){
     			console.log('AJAX Failed');
     		});
     	});		
 	});	
 
-	function Callback(shops) {		
-		var timer = 0;
+	function callback(shops) {		
 		/*
 		Stagger google geocodes due to usage limits.
 		Ideally would cache geocode on server.
 		Loop through data.
 		*/		
 		$.each(shops, function(index, value) {
-				var passVal = value;
-				timer += 500; 				
+				var val = value; 				
 				setTimeout(function(){
-					geocode(passVal);
-				}, timer)
+					geocode(val);
+				}, index*500)
 		});
 	}
 
