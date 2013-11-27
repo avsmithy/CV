@@ -7,23 +7,22 @@
 
 	$(function() {	
 		
-		var n = window.prompt("What value of n would you like?", 10);		
+		var n = window.prompt("What value of n would you like?", 10);	
+		n = parseFloat(n);
 		
-		try {
-			
+		try {			
 			checkN(n);
-
 		} catch (e) {
 			document.write(e.message);
 			return;
 		}
 
-		if (n > 32 && n < 10000) {
+		if (n > 32 && n < 50001) {
 			
 			var primes = genPrimes(n);
 			document.write(n + "th prime is: " + primes[primes.length - 1]);
 
-		} else if (n >= 10000) {
+		} else if (n >= 50001) {
 			
 			document.write("n is too large to calculate primes");
 

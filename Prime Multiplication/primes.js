@@ -1,39 +1,36 @@
 function checkN(n) {	
-	
-	if (!n) { // Also checks for empty string
-		throw new Error("n must exist") 
-	}		 
 
-	if ((n % 1) != 0) { // Checks for non integers and strings			
+	if (n !== parseInt(n)) // Checks for non integers
 		throw new Error("n must be an integer") 
-	}
 	
-	if (n < 1) { // If n negative or whitespace string
+	if (n < 1)  // If n negative
 		throw new Error("n must be greater than or equal to 1");
-	}
 
 	return true;		
+}
+
+function isPrime(a, primeArray) {
+
+	for (j = 0; j < primeArray.length; j++) {  // Loop over prime numbers up to a
+		if (a % primeArray[j] === 0)  // If divisible, not a prime
+			return false;
+	}
+
+	return true;
 }
 
 function genPrimes(n) {
 
 	var primeArray = []; // Array to store primes
-	var i = 1; // First prime is 2 (will be incre. at beginning of first loop)
+	var i = 2; // First prime is 2
 
-	pf: do {	
+	while (primeArray.length < n) { // Until we have enough primes
 
+		if (isPrime(i, primeArray))
+			primeArray.push(i); // Add to array if a prime
 		i++;
-		for (j = 2; j < i; j++) { // Go through 2 -> number
-			
-			if ((i % j) == 0) { // If divisible (aka. not a prime)
-				continue pf; // Skip the rest of this loop
-			}
-
-		}
-
-		primeArray.push(i); // Add to array if a prime			
-
-	} while (primeArray.length < n) // Until we have enough primes
+		
+	} 
 
 	return primeArray;		
 }
@@ -42,15 +39,15 @@ function multiplyTable(numbers) {
 	
 	// 2d array (actually an array of arrays)
 	var table = [];
-	table[0] = numbers; // Set first row to primes
+	table[0] = numbers; // Set first row to number array
 
 	for (i = 1; i < numbers.length; i++) {
 	
-		table[i] = [numbers[i]]; // Make first col primes
+		table[i] = [numbers[i]]; // Make first col number array
 	
 		for (j = 1; j < numbers.length; j++) {		
 
-			table[i][j] = numbers[i] * numbers[j]; // Multiply primes
+			table[i][j] = numbers[i] * numbers[j]; // Multiply numbers
 
 		}
 
