@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="style.css" rel="stylesheet" type="text/css" />	
+	<script src="libs/underscore-min.js"></script>
+	<script src="libs/jquery-2.0.3.min.js"></script>
+	<script src="main.js"></script>
+</head>
+<body>
+<input type="file" id="input" onchange="fileUpload(this.files)">
+<div class="wrapper">
+	<div class="left-col">
+		<div>Channel</div>
+		<div>Sean Connery</div>
+		<div>George Lazenby</div>
+		<div>Roger Moore</div>
+		<div>Timothy Dalton</div>
+		<div>Pierce Brosnan</div>
+		<div>Daniel Craig</div>
+	</div>
+
+	<div class="right-col-wrapper">
+		<div class="right-col">
+			<div class="timestamp">
+				<div>9am</div>
+				<div>10am</div>
+				<div>11am</div>
+				<div>12pm</div>
+				<div>1pm</div>
+				<div>2pm</div>
+				<div>3pm</div>
+				<div>4pm</div>
+				<div>5pm</div>
+			</div>
+			<div class="sean"><div class="default">No programmes available</div></div>
+			<div class="george"><div class="default">No programmes available</div></div>
+			<div class="roger"><div class="default">No programmes available</div></div>
+			<div class="timothy"><div class="default">No programmes available</div></div>
+			<div class="pierce"><div class="default">No programmes available</div></div>
+			<div class="daniel"><div class="default">No programmes available</div></div>
+		</div>
+	</div>
+</div>
+
+<div class="popup">
+	<div class="header"><span>Sky</span> Remote Record</div>
+	<div class="text">The James Bond movie <span id="movie"></span> is set to be recorded</div>
+	<div class="close">Close</div>
+</div>
+
+<!-- Dev -->
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>

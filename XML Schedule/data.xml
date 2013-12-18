@@ -1,0 +1,102 @@
+<?xml version="1.0" ?>
+<movie_data> 
+<title>movie data</title>
+	<movie> 
+		<actor>sean</actor>
+		<name>Dr No</name> 
+		<start_time>0900</start_time> 
+		<end_time>1100</end_time>
+	</movie>￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼
+	
+	<movie> 
+		<actor>sean</actor>
+		<name>Thunderball</name> 
+		<start_time>1100</start_time> 
+		<end_time>1330</end_time>
+	</movie>
+	<movie> 
+		<actor>sean</actor>
+		<name>Goldfinger</name> 
+		<start_time>1330</start_time> 
+		<end_time>1530</end_time>
+	</movie>
+	<movie> 
+		<actor>sean</actor>
+		<name>From Russia with Love</name> 
+		<start_time>1530</start_time> 
+		<end_time>1700</end_time>
+	</movie>
+	<movie> 
+		<actor>george</actor>
+		<name>On Her Majesty's Secret Service</name> 
+		<start_time>0900</start_time> 
+		<end_time>1130</end_time>
+	</movie>
+	<movie> 
+		<actor>roger</actor>
+		<name>Live and Let Die</name> 
+		<start_time>0900</start_time> 
+		<end_time>1130</end_time>
+	</movie>
+	<movie> 
+		<actor>roger</actor>
+		<name>Moonraker</name> 
+		<start_time>1130</start_time> 
+		<end_time>1245</end_time>
+	</movie>
+	<movie> 
+		<actor>roger</actor>
+		<name>Octopussy</name> 
+		<start_time>1245</start_time> 
+		<end_time>1430</end_time>
+	</movie>
+	<movie> 
+		<actor>timothy</actor>
+		<name>The Living Daylights</name> 
+		<start_time>0900</start_time> 
+		<end_time>1100</end_time>
+	</movie>	
+	<movie> 
+		<actor>timothy</actor>
+		<name>License to Kill</name> 
+		<start_time>1100</start_time> 
+		<end_time>1300</end_time>
+	</movie>
+	<movie> 
+		<actor>pierce</actor>
+		<name>GoldenEye</name> 
+		<start_time>0900</start_time> 
+		<end_time>1100</end_time>
+	</movie>
+	<movie> 
+		<actor>pierce</actor>
+		<name>Tomorrow Never Dies</name> 
+		<start_time>1100</start_time> 
+		<end_time>1300</end_time>
+	</movie>
+	<movie> 
+		<actor>pierce</actor>
+		<name>The World Is Not Enough</name> 
+		<start_time>1300</start_time> 
+		<end_time>1530</end_time>
+	</movie>
+	<movie> 
+		<actor>daniel</actor>
+		<name>Casino Royale</name> 
+		<start_time>0900</start_time> 
+		<end_time>1100</end_time>
+	</movie>
+	<movie> 
+		<actor>daniel</actor>
+		<name>Quantum of Solace</name> 
+		<start_time>1100</start_time> 
+		<end_time>1300</end_time>
+	</movie>
+	<movie> 
+		<actor>daniel</actor>
+		<name>Skyfall</name> 
+		<start_time>1300</start_time> 
+		<end_time>1530</end_time>
+	</movie>
+	
+</movie_data>
