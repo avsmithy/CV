@@ -1,8 +1,12 @@
-# CV Examples
+## Alex Smith Coding Examples
 
-## StreetHub
+### Decision - Path Finding Algorithm
 
-### Example AJAX + Google Maps script
+### Prime Multiplication - Prime and Multiplication Matrix Generator
+
+### XML Schedule - UI Pulling Data from XML File
+
+### StreetHub - AJAX + Google Maps script
 
 Cross domain AJAX will not work without CORS or JSONP support (or a proxy).
 
