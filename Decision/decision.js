@@ -7,7 +7,7 @@ function Route(path, length) {
 
 	this.getPath = function() {
 		return this.path;
-	}
+	};
 
 	this.getLength = function() {
 		if (this.pathLength) {
@@ -15,35 +15,35 @@ function Route(path, length) {
 		} else {
 			return pathLength(this.path);
 		}
-	}
+	};
 
 	this.isFinished = function() {
 		return this.finished;
-	}
+	};
 
 	this.setFinished = function() {
 		this.finished = true;
-	}
+	};
 
 	this.addPoint = function(point) {
 		this.path.push(point);
-	}
+	};
 
 	this.firstPoint = function() {
 		return this.path[0];
-	}
+	};
 
 	this.lastPoint = function() {
 		return _.last(this.path);
-	}
+	};
 
 	this.hasPoint = function(point) {  // Check if path contains a point exc. first and last
 		if (this.path.slice(1,-1).indexOf(point) == -1) {
 			return false;
 		} else {
-			return true
+			return true;
 		}
-	}
+	};
 
 }
 
@@ -65,7 +65,7 @@ function pathLength(routeArr) { // Find length of a given path (with all interse
 		edgeEnd = routeArr[i+1];
 		var found = false;
 
-		_.each(DATA, function(d){
+		_.each(DATA, function(d) {
 			if (d.firstPoint() == edgeStart && d.lastPoint() == edgeEnd) { // Find matching path between n and n+1
 				len += d.getLength();
 				found = true;
@@ -136,9 +136,9 @@ function addPaths(route, end, allowContinue) { // Searches another levels deeper
 
 	_.each(DATA, function(d) {
 
-		if (d.firstPoint() == route.lastPoint() && route.isFinished() == false) {
+		if (d.firstPoint() == route.lastPoint() && route.isFinished() === false) {
 			var nr = new Route(route.getPath().concat(d.lastPoint()));
-			if (nr.lastPoint() == end && allowContinue == false)
+			if (nr.lastPoint() == end && allowContinue === false)
 				nr.setFinished();
 			extendedRoutes.push(nr);
 		}
@@ -152,7 +152,7 @@ function findNumberOfRoutes(start, end, maxlength, minjunc, maxjunc) { // Get al
 
 	return _.filter(createRoutes(start, end, true), function(r) {
 
-		if (minjunc != undefined) {
+		if (minjunc !== undefined) {
 			var junctions = r.getPath().length - 1;
 			return (junctions <= maxjunc && junctions >= minjunc);
 		} else {
